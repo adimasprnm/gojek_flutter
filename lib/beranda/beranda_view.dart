@@ -273,14 +273,12 @@ class _BerandaPageState extends State<BerandaPage> {
         children: <Widget>[
           new Text(
             "GO-FOOD",
-            style: new TextStyle(fontFamily: "NeoSansBold"),
           ),
           new Padding(
             padding: EdgeInsets.only(top: 8.0),
           ),
           new Text(
             "Pilihan Terlaris",
-            style: new TextStyle(fontFamily: "NeoSansBold"),
           ),
           new SizedBox(
             height: 172.0,
@@ -335,87 +333,6 @@ class _BerandaPageState extends State<BerandaPage> {
     );
   }
 
-  Widget _buildPromo() {
-    return new Container(
-        margin: EdgeInsets.all(16.0),
-        child: FutureBuilder(
-          future: fetchPromo(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return new Column(
-                  children: snapshot.data.map<Widget>((data) {
-                return _rowPromo(data);
-              }).toList());
-            }
-            return Center(
-              child: SizedBox(
-                  width: 40.0,
-                  height: 40.0,
-                  child: const CircularProgressIndicator()),
-            );
-          },
-        ));
-  }
-
-  Widget _rowPromo(Promo promo) {
-    return new Container(
-      height: 320.0,
-      child: new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          new Container(
-            margin: EdgeInsets.only(bottom: 16.0),
-            width: double.infinity,
-            height: 1.0,
-            color: GojekPalette.grey200,
-          ),
-          new ClipRRect(
-            borderRadius: new BorderRadius.circular(8.0),
-            child: new Image.asset(
-              promo.image,
-              height: 172.0,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-          new Padding(
-            padding: EdgeInsets.only(top: 16.0),
-          ),
-          new Text(
-            promo.title,
-            style: new TextStyle(fontFamily: "NeoSansBold", fontSize: 16.0),
-          ),
-          new Padding(
-            padding: EdgeInsets.only(top: 8.0),
-          ),
-          new Text(
-            promo.content,
-            maxLines: 2,
-            softWrap: true,
-            style: new TextStyle(color: Colors.grey, fontSize: 14.0),
-          ),
-          new Padding(
-            padding: EdgeInsets.only(top: 6.0),
-          ),
-          new Container(
-            alignment: Alignment.centerRight,
-            child: new MaterialButton(
-              color: GojekPalette.green,
-              onPressed: () {},
-              child: new Text(
-                promo.button,
-                style: new TextStyle(
-                    color: Colors.white,
-                    fontFamily: "NeoSansBold",
-                    fontSize: 12.0),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   Widget _buildMenuBottomSheet() {
     return new StatefulBuilder(builder: (c, s) {
       return new SafeArea(
@@ -434,7 +351,7 @@ class _BerandaPageState extends State<BerandaPage> {
             children: <Widget>[
               new Text(
                 "GO-JEK Services",
-                style: new TextStyle(fontFamily: "NeoSansBold", fontSize: 18.0),
+                style: new TextStyle(fontSize: 18.0),
               ),
               new OutlineButton(
                 color: GojekPalette.green,
@@ -476,40 +393,8 @@ class _BerandaPageState extends State<BerandaPage> {
     _goFoodFeaturedList.add(
         new Food(title: "Kindai Warung Banjar", image: "assets/food_5.jpg"));
 
-    return new Future.delayed(new Duration(seconds: 1), () {
+    return new Future.delayed(new Duration(seconds: 7), () {
       return _goFoodFeaturedList;
-    });
-  }
-
-  Future<List<Promo>> fetchPromo() async {
-    List<Promo> _poromoList = [];
-
-    _poromoList.add(new Promo(
-        image: "assets/images/promo_1.jpg",
-        title: "Bayar PLN dan BPJS, dapat cashback 10%",
-        content:
-            "Nikmatin cashback 10% untuk pembayaran PLN, BPJS, Google Voucher dan tagihan lain di GO-BILS.",
-        button: "MAU!"));
-    _poromoList.add(new Promo(
-        image: "assets/images/promo_2.jpg",
-        title: "#CeritaGojek",
-        content:
-            "Berulang kali terpuruk tak menghalanginya untuk bangkit dan jadi kebanggan kami, Simak selengkapnya disini.",
-        button: "SELENGKAPNYA"));
-    _poromoList.add(new Promo(
-        image: "assets/images/promo_3.jpg",
-        title: "GOJEK Ultah Ke 8",
-        content:
-            "8 Tahun berdiri ada satu alasan kami tetap tumbuh dan berinovasi. Satu yang buat kami untuk terus berinovasi",
-        button: "CARI TAU!"));
-    _poromoList.add(new Promo(
-        image: "assets/images/promo_4.jpg",
-        title: "Gratis Pulsa 100rb*",
-        content:
-            "Aktifkan 10 Voucher GO-PULSAmu sekarang biar ngabarin yang terdekat gak pakai terhambat.",
-        button: "LAKSANAKAN"));
-    return new Future.delayed(new Duration(seconds: 3), () {
-      return _poromoList;
     });
   }
 }
