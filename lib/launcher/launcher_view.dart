@@ -15,7 +15,7 @@ class _LauncherPageState extends State<LauncherPage> {
   }
 
   startLaunching() async {
-    var duration = const Duration(seconds: 7);
+    var duration = const Duration(seconds: 5);
     return new Timer(duration, () {
       Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (_) {
         return new LandingPage();
@@ -28,7 +28,7 @@ class _LauncherPageState extends State<LauncherPage> {
     return new Scaffold(
       body: new Center(
         child: new Image.asset(
-          "asset/img_gojek_logo.png",
+          "assets/img_gojek_logo.png",
           height: 100.0,
           width: 200.0,
         ),
